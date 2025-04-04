@@ -3,78 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play Om Nom Run - An exciting endless runner game featuring Om Nom. Run, jump, and collect coins in this immersive HTML5 game.">
-    <meta name="keywords" content="omnomrun, om nom run, endless runner game, html5 game, famobi game">
+    <meta name="description" content="Play Om Nom Run - The ultimate endless runner game. Join Om Nom in an exciting adventure, collect candies, and dodge obstacles in this addictive HTML5 game.">
+    <meta name="keywords" content="omnomrun, om nom run, endless runner game, html5 game, online game, free game, mobile game">
+    <meta property="og:title" content="Om Nom Run - Play the Ultimate Endless Runner Game Online">
+    <meta property="og:description" content="Play Om Nom Run - The ultimate endless runner game. Join Om Nom in an exciting adventure, collect candies, and dodge obstacles.">
+    <meta property="og:image" content="https://play.famobi.com/om-nom-run/preview.jpg">
+    <meta property="og:url" content="https://omnomrun.online">
     <link rel="canonical" href="https://omnomrun.online">
-    <title>Om Nom Run - Play the Exciting Endless Runner Game Online</title>
+    <title>Om Nom Run - Play the Ultimate Endless Runner Game Online | omnomrun.online</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        }
-        
-        function isAndroid() {
-            return /Android/.test(navigator.userAgent);
-        }
-        
-        function redirectToGame() {
-            window.location.href = 'https://play.famobi.com/om-nom-run';
-        }
-
-        function showLoading() {
-            document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('game-frame').classList.add('hidden');
-            document.getElementById('game-preview').classList.add('hidden');
-        }
-
-        function hideLoading() {
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('game-frame').classList.remove('hidden');
-        }
-
-        function handleGameError() {
-            document.getElementById('error-message').classList.remove('hidden');
-            document.getElementById('game-frame').classList.add('hidden');
-            document.getElementById('loading').classList.add('hidden');
-        }
-
-        function updateProgress(progress) {
-            const progressBar = document.getElementById('progress-bar');
-            const progressText = document.getElementById('progress-text');
-            progressBar.style.width = `${progress}%`;
-            progressText.textContent = `Loading... ${progress}%`;
-        }
-
-        function preloadGame() {
-            return new Promise((resolve) => {
-                const gameFrame = document.getElementById('game-frame');
-                let progress = 0;
-                const interval = setInterval(() => {
-                    progress += 5;
-                    updateProgress(progress);
-                    if (progress >= 100) {
-                        clearInterval(interval);
-                        resolve();
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'apple-blue': '#007AFF',
+                        'apple-gray': '#F5F5F7',
+                        'apple-dark': '#1D1D1F'
                     }
-                }, 200);
-            });
-        }
-
-        async function loadGame() {
-            if (isIOS()) {
-                redirectToGame();
-                return;
-            }
-            showLoading();
-            try {
-                await preloadGame();
-                document.getElementById('game-frame').classList.remove('hidden');
-                document.getElementById('game-preview').classList.add('hidden');
-            } catch (error) {
-                handleGameError();
+                }
             }
         }
     </script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
         
@@ -85,6 +37,7 @@
         .game-container {
             aspect-ratio: 16/9;
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
             position: relative;
         }
@@ -94,85 +47,26 @@
                 aspect-ratio: 9/16;
             }
         }
-        
-        .play-button {
-            background-color: #007AFF;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            cursor: pointer;
-        }
-        
-        .play-button:hover {
-            background-color: #0056b3;
-        }
 
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #007AFF;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .game-preview {
+        #game-frame {
             width: 100%;
             height: 100%;
-            background-image: url('https://play.famobi.com/om-nom-run/preview.jpg');
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
+            border: none;
         }
 
-        .progress-container {
-            width: 80%;
-            height: 4px;
-            background-color: #f3f3f3;
-            border-radius: 2px;
-            margin: 20px auto;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background-color: #007AFF;
-            width: 0;
-            transition: width 0.3s ease;
-        }
-
-        .ios-preview {
-            background-color: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-        }
-
-        .ios-preview img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
+        .gradient-text {
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-apple-gray">
     <header class="bg-white shadow-sm">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-gray-900">Om Nom Run</h1>
+                    <h1 class="text-2xl md:text-3xl font-bold gradient-text">Om Nom Run</h1>
                 </div>
             </div>
         </nav>
@@ -180,90 +74,99 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <section class="text-center mb-8">
-            <h2 class="text-3xl font-semibold text-gray-900 mb-4">Endless Running Adventure with Om Nom</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Join Om Nom in his thrilling endless runner adventure! Dodge obstacles, collect coins, and unlock power-ups in this immersive HTML5 game.
+            <p class="text-xl text-apple-dark mb-8">
+                Experience the thrill of endless running with Om Nom as you dash through colorful worlds, collecting candies and avoiding obstacles!
             </p>
         </section>
 
-        <section class="game-container bg-white rounded-lg shadow-lg overflow-hidden mb-8">
-            <div id="ios-alert" class="hidden p-6 text-center">
-                <div class="ios-preview">
-                    <img src="https://play.famobi.com/om-nom-run/preview.jpg" alt="Om Nom Run Preview">
-                    <p class="text-gray-600 mb-4">For the best gaming experience on iOS devices, please tap the button below to play the game directly.</p>
-                    <button onclick="redirectToGame()" class="play-button">Play Om Nom Run</button>
-                </div>
+        <section class="mb-12">
+            <div class="game-container bg-white rounded-lg shadow-lg overflow-hidden">
+                <iframe 
+                    id="game-frame"
+                    src="https://play.famobi.com/om-nom-run" 
+                    allowfullscreen
+                    title="Om Nom Run Game"
+                ></iframe>
             </div>
-
-            <div id="loading" class="absolute inset-0 flex items-center justify-center bg-white">
-                <div class="text-center">
-                    <div class="loading-spinner mx-auto mb-4"></div>
-                    <p id="progress-text" class="text-gray-600 mb-2">Loading... 0%</p>
-                    <div class="progress-container">
-                        <div id="progress-bar" class="progress-bar"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="error-message" class="hidden p-6 text-center">
-                <p class="text-red-600 mb-4">Sorry, there was an error loading the game. Please try again later.</p>
-                <button onclick="window.location.reload()" class="play-button">Retry</button>
-            </div>
-
-            <div id="game-preview" class="game-preview" onclick="loadGame()">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <button class="play-button">Click to Play</button>
-                </div>
-            </div>
-
-            <iframe 
-                id="game-frame"
-                src="https://play.famobi.com/om-nom-run" 
-                class="w-full h-full border-0 hidden"
-                allowfullscreen
-                loading="lazy"
-                onload="hideLoading()"
-                onerror="handleGameError()"
-            ></iframe>
         </section>
 
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Game Features</h2>
-                <ul class="space-y-2 text-gray-600">
-                    <li>• Endless runner gameplay with increasing difficulty</li>
-                    <li>• Multiple power-ups and character transformations</li>
-                    <li>• Beautiful graphics and smooth animations</li>
-                    <li>• Responsive design for all devices</li>
-                    <li>• Free to play, no downloads required</li>
+                <h2 class="text-2xl font-semibold text-apple-dark mb-4">Game Features</h2>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-apple-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Endless runner gameplay with increasing difficulty
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-apple-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Multiple power-ups and character transformations
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-apple-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Beautiful graphics and smooth animations
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-apple-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Cross-platform compatibility
+                    </li>
                 </ul>
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">How to Play</h2>
-                <ul class="space-y-2 text-gray-600">
-                    <li>• Use arrow keys or swipe to control Om Nom</li>
-                    <li>• Jump over obstacles and collect coins</li>
-                    <li>• Unlock special abilities and power-ups</li>
-                    <li>• Compete for high scores with friends</li>
-                    <li>• Enjoy the game in full-screen mode</li>
+                <h2 class="text-2xl font-semibold text-apple-dark mb-4">How to Play</h2>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-apple-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Use arrow keys or swipe to control Om Nom
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-apple-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Jump over obstacles and collect candies
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-apple-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Unlock special abilities and power-ups
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-apple-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Compete for high scores
+                    </li>
                 </ul>
             </div>
         </section>
 
-        <section class="bg-white p-6 rounded-lg shadow-sm">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-4">About Om Nom Run</h2>
-            <p class="text-gray-600 mb-4">
-                Om Nom Run is an exciting endless runner game developed by Famobi. The game features the beloved character Om Nom from the popular Cut the Rope series. Players control Om Nom as he runs through various environments, avoiding obstacles and collecting coins.
-            </p>
-            <p class="text-gray-600">
-                The game is built using HTML5 technology, ensuring smooth gameplay across all devices without the need for downloads or installations. With its intuitive controls and engaging gameplay mechanics, Om Nom Run offers hours of entertainment for players of all ages.
-            </p>
+        <section class="bg-white p-6 rounded-lg shadow-sm mb-12">
+            <h2 class="text-2xl font-semibold text-apple-dark mb-4">About Om Nom Run</h2>
+            <div class="space-y-4 text-gray-600">
+                <p>
+                    Om Nom Run is an exciting endless runner game that brings the beloved character from Cut the Rope into a new adventure. As Om Nom races through vibrant environments, players must help him collect candies while avoiding various obstacles.
+                </p>
+                <p>
+                    The game features stunning graphics, intuitive controls, and increasingly challenging gameplay that will keep you coming back for more. With regular updates and new content, Om Nom Run offers endless entertainment for players of all ages.
+                </p>
+            </div>
         </section>
     </main>
 
-    <footer class="bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <footer class="bg-apple-dark text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <p class="text-gray-400">© 2024 Om Nom Run. All rights reserved.</p>
                 <p class="text-gray-400 mt-2">Game developed by Famobi. This is a fan site.</p>
@@ -272,14 +175,25 @@
     </footer>
 
     <script>
+        // iOS detection for optimal mobile experience
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        // Handle game frame loading
         document.addEventListener('DOMContentLoaded', function() {
+            const gameFrame = document.getElementById('game-frame');
+            
+            // Optimize for iOS devices
             if (isIOS()) {
-                document.getElementById('game-frame').style.display = 'none';
-                document.getElementById('ios-alert').classList.remove('hidden');
-                document.getElementById('game-preview').classList.add('hidden');
-            } else {
-                document.getElementById('game-preview').classList.remove('hidden');
+                gameFrame.style.width = '100%';
+                gameFrame.style.height = '100%';
             }
+
+            // Add loading error handling
+            gameFrame.onerror = function() {
+                gameFrame.src = 'https://play.famobi.com/om-nom-run';
+            };
         });
     </script>
 </body>
